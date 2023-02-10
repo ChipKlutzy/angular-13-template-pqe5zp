@@ -53,49 +53,49 @@ export class AppComponent implements OnInit {
     const web3Provider = new providers.Web3Provider(provider);
     console.log(web3Provider);
 
-    setTimeout(() => {
-      const result = provider.request({
-        id: 1,
-        jsonrpc: '2.0',
-        method: 'personal_sign',
-        params: [
-          `0x${this.toHex('testing')}`,
-          web3Provider.provider.selectedAddress,
-        ],
-      });
-    }, 2000);
-
-    //  Create WalletConnect Provider
-
-    //  Enable session (triggers QR Code modal)
-    // provider.enable().then(() => {
-    //   console.log('here');
-    //   //  Wrap with Web3Provider from ethers.js
-    //   const web3Provider = new providers.Web3Provider(provider);
-    //   console.log(web3Provider);
-
-    //   // Send JSON RPC requests
+    // setTimeout(() => {
     //   const result = provider.request({
     //     id: 1,
     //     jsonrpc: '2.0',
     //     method: 'personal_sign',
     //     params: [
     //       `0x${this.toHex('testing')}`,
-    //       web3Provider.provider.accounts[0],
+    //       web3Provider.provider.selectedAddress,
     //     ],
     //   });
+    // }, 2000);
 
-    //   console.log(result);
+    //  Create WalletConnect Provider
 
-    //   // Close provider session
-    //   // provider.disconnect();
-    // });
+    //  Enable session (triggers QR Code modal)
+    provider.enable().then(() => {
+      console.log('here');
+      //  Wrap with Web3Provider from ethers.js
+      const web3Provider = new providers.Web3Provider(provider);
+      console.log(web3Provider);
+
+      //   // Send JSON RPC requests
+      //   const result = provider.request({
+      //     id: 1,
+      //     jsonrpc: '2.0',
+      //     method: 'personal_sign',
+      //     params: [
+      //       `0x${this.toHex('testing')}`,
+      //       web3Provider.provider.accounts[0],
+      //     ],
+      //   });
+
+      //   console.log(result);
+
+      //   // Close provider session
+      //   // provider.disconnect();
+    });
   }
 
-  private toHex(stringToConvert: string) {
-    return stringToConvert
-      .split('')
-      .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
-      .join('');
-  }
+  // private toHex(stringToConvert: string) {
+  //   return stringToConvert
+  //     .split('')
+  //     .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
+  //     .join('');
+  // }
 }
